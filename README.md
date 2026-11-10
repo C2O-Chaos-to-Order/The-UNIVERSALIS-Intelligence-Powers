@@ -1,22 +1,42 @@
-# The-GAIA-Intelligence-Powers
-The Intelligence Powers of GAIA.
+# The UNIVERSALIS Intelligence Powers
 
-## GAIA repositories
+The Intelligence Powers of UNIVERSALIS.
 
-The-GAIA-Foundation is the active source of truth. The-Official-GAIA-Encyclopedia is a backup only. The founding principle for every repository is [Truth with Integrity](https://github.com/KyleAlexanderSteen/The-GAIA-Foundation/blob/main/PRINCIPLES.md): "A Truth That Is Never Twisted."
+**Guiding principle:** *With Power, Comes Responsibility.*
+
+**Current repository (dated 2026-11-10):** `C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers`. `main` is at `ca64c28f762b20801d1dbbf0c77d028144787ac1` (2026-10-25 7:49:12 AM CT (America/Chicago)). This is a public UNIVERSALIS satellite. It is not a GAIA property on a personal account, and The-GAIA-Foundation is not the active source of truth for this tree.
+
+## What is in this repository
+
+On that `main` HEAD there are three files:
+
+- `README.md` (this file)
+- `Intelligence_Powers.md` — canonical document text for Intelligence Powers (I-P)
+- `Intelligence_Powers.docx` — companion Word copy, retained and not deleted
+
+The Markdown file is the canonical text. The `.docx` is a convenience companion. If the two ever differ, prefer the Markdown unless the owner says otherwise.
+
+## Related public UNIVERSALIS repositories
 
 | Repository | What it holds |
 |---|---|
-| [The-GAIA-Foundation](https://github.com/KyleAlexanderSteen/The-GAIA-Foundation) | Primary source: the research corpus (reports, tracks, cycles, Maps and Matrix v1–v43), governance and `PRINCIPLES.md`. Every research gate is INDETERMINATE |
-| [The-GAIA-Human-Knowledge](https://github.com/KyleAlexanderSteen/The-GAIA-Human-Knowledge) | Human Subjects of Knowledge (H-K) |
-| [The-GAIA-Human-Capabilities](https://github.com/KyleAlexanderSteen/The-GAIA-Human-Capabilities) | Human Capabilities (H-C) |
-| [The-GAIA-Human-Skills](https://github.com/KyleAlexanderSteen/The-GAIA-Human-Skills) | Human Skills (H-S) |
-| [The-GAIA-Human-Powers](https://github.com/KyleAlexanderSteen/The-GAIA-Human-Powers) | Human Powers (H-P) |
-| [The-GAIA-Intelligence-Knowledge](https://github.com/KyleAlexanderSteen/The-GAIA-Intelligence-Knowledge) | Intelligence Subjects of Knowledge (I-K) |
-| [The-GAIA-Intelligence-Capabilities](https://github.com/KyleAlexanderSteen/The-GAIA-Intelligence-Capabilities) | Intelligence Capabilities (I-C) |
-| [The-GAIA-Intelligence-Skills](https://github.com/KyleAlexanderSteen/The-GAIA-Intelligence-Skills) | Intelligence Skills (I-S) |
-| [The-GAIA-Intelligence-Powers](https://github.com/KyleAlexanderSteen/The-GAIA-Intelligence-Powers) | Intelligence Powers (I-P) |
-| [The-GAIA-Ontology](https://github.com/KyleAlexanderSteen/The-GAIA-Ontology) | Master Ontology: the eight documents above compiled, with a shared source register |
-| [The-GAIA-Map-and-Matrix](https://github.com/KyleAlexanderSteen/The-GAIA-Map-and-Matrix) | Human–Intelligence Map and Matrix: v1.2 is the latest version mapping the Foundation's completed work across all ten repositories (v1.1 and v1.0 kept as prior versions) |
+| [The-UNIVERSALIS-Ecosystem](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Ecosystem) | Public UNIVERSALIS product (`prototype/` and `scaffold/` on its `main`; LIMITED) |
+| [Research-for-the-UNIVERSALIS-Ecosystem](https://github.com/C2O-Chaos-to-Order/Research-for-the-UNIVERSALIS-Ecosystem) | Public UNIVERSALIS research workspace (packages currently in drafts) |
+| [The-UNIVERSALIS-Human-Knowledge](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Human-Knowledge) | Human Subjects of Knowledge (H-K) |
+| [The-UNIVERSALIS-Human-Capabilities](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Human-Capabilities) | Human Capabilities (H-C) |
+| [The-UNIVERSALIS-Human-Skills](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Human-Skills) | Human Skills (H-S) |
+| [The-UNIVERSALIS-Human-Powers](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Human-Powers) | Human Powers (H-P) |
+| [The-UNIVERSALIS-Intelligence-Knowledge](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Knowledge) | Intelligence Subjects of Knowledge (I-K) |
+| [The-UNIVERSALIS-Intelligence-Capabilities](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Capabilities) | Intelligence Capabilities (I-C) |
+| [The-UNIVERSALIS-Intelligence-Skills](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Skills) | Intelligence Skills (I-S) |
+| [The-UNIVERSALIS-Intelligence-Powers](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers) | Intelligence Powers (I-P) |
+| [The-UNIVERSALIS-Ontology](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Ontology) | Master Ontology: Human and Intelligence |
+| [The-UNIVERSALIS-Encyclopedias](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Encyclopedias) | Public encyclopedia placeholder (no commits as of the 2026-11-10 inventory) |
 
-How they connect is recorded in Map and Matrix v1.2, the latest version (`v1.2/`, sheet `Foundation x Repositories`): explicit links carry an evidence path; inferred links are on the `Proposed` sheet, labelled Hypothetical, until the owner approves them.
+## Historical predecessor
+
+A historical research corpus is preserved at [The-GAIA-Foundation-Old-Repo](https://github.com/C2O-Chaos-to-Order/The-GAIA-Foundation-Old-Repo). That repository is a frozen predecessor corpus. It is not the active source of truth for these UNIVERSALIS satellites.
+
+Personal-account `KyleAlexanderSteen/The-GAIA-*` URLs that appeared in earlier versions of this README are not listed here as current homes.
+
+Maps and Matrix directories `v1/` through `v43/` live inside that old repository at `Research/Maps-and-Matrix/`. The 2026-11-10 inventory of the 28 `C2O-Chaos-to-Order` repositories did not include a separate `The-GAIA-Map-and-Matrix` repository, so this README does not cite one as a current owner home.
