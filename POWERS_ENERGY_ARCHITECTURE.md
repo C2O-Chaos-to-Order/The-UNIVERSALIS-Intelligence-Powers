@@ -102,7 +102,7 @@ The shared energy-budget grant schema defines holder binding and attenuation. It
 | Owner-supplied UNIVERSALIS tool candidates recorded | Documented |
 | Shared measurement / receipt / grant / synergy schemas | Implemented in this branch |
 | Synthetic fixtures and dependency-free semantic validator | Implemented in this branch |
-| GitHub Actions execution | Pending |
+| GitHub Actions execution | Passed — see POWERS_ENERGY_VALIDATION.md |
 | Hardware measurement coverage and calibration | Pending |
 | Carbon scheduling / inference / workflow integrations | Not implemented |
 | Candidate source/license/security verification | Pending |
@@ -129,3 +129,5 @@ The following figures are carried forward as claims from the supplied proposal o
 | ebb-ai proposal context | 30–60% intra-day grid-intensity variation and a 50% batch-API discount | ISO/region, date/time series, provider terms, eligibility, and time-of-use baseline |
 
 Do not promote these figures into default savings assumptions. Store the source, benchmark version, workload, device/provider, method, uncertainty, and independent reproduction receipt for each claim.
+
+The executed checks and their exact run IDs, including the intermediate failed attempt and correction where applicable, are recorded in `POWERS_ENERGY_VALIDATION.md`.
