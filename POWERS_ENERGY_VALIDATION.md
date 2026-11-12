@@ -31,8 +31,9 @@ Negative tests:
 5. A denied action is recorded as successful execution.
 6. An estimated meter omits its estimator identity.
 7. Overlapping PDU/RAPL/Kepler/GPU layers are declared for naive addition rather than reconciliation.
-8. The reported synergy factor does not match the formula.
-9. Actual CO2e does not reconcile with actual joules and carbon intensity.
+8. A scenario counts positive useful work despite having zero verified outcomes.
+9. The reported synergy factor does not match the formula.
+10. Actual CO2e does not reconcile with actual joules and carbon intensity.
 
 ## C2O / UNIVERSALIS enforcement distinction
 
@@ -42,7 +43,7 @@ The UNIVERSALIS profile accepts the portable grant/receipt structure while keepi
 
 - The dependency-free validator runs in GitHub Actions.
 - The synthetic fixture passes the repository-specific profile.
-- The nine intended negative conditions are rejected.
+- The ten intended negative conditions are rejected.
 - The baseline workflow confirms that the schema and fixture are valid JSON.
 
 ## Limits and unresolved work
