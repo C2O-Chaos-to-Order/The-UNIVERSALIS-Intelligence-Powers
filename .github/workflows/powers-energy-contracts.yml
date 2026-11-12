@@ -15,7 +15,7 @@ jobs:
         run: python --version
       - name: Powers contract positive and negative tests
         run: python .github/scripts/powers_energy_contract.py --self-test
-      - name: Validate C2O Powers fixtures
-        run: python .github/scripts/powers_energy_contract.py --check --profile c2o
+      - name: Validate UNIVERSALIS Powers fixtures
+        run: python .github/scripts/powers_energy_contract.py --check --profile universalis
       - name: Repository quality baseline
         run: python .github/scripts/repository_quality_baseline.py --self-test --check
