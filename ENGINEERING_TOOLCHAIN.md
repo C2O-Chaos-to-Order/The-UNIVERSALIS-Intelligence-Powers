@@ -92,3 +92,10 @@ The canonical taxonomy remains in `Intelligence_Powers.md`. This separate public
 - [Validation record](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/INTELLIGENCE_POWERS_VALIDATION.md)
 
 Cedar and OPA/Rego are peer policy-language options. AuthZEN 1.0 provides the PDP/PEP API surface, not a policy engine. SwarmScore remains an individual IETF Internet-Draft, not an adopted IETF standard. Candidate runtimes and product metrics are not assumed installed or verified. No shared schema carries C2O-private policy or authority material.
+
+
+## Security and Cybersecurity — eleventh owner-supplied source — 2026-11-12
+
+Canonical public architecture: [UNIVERSALIS Security and Cybersecurity](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Ecosystem/blob/implementation/repository-foundation-2026-11-12/SECURITY_CYBERSECURITY_ARCHITECTURE.md). The public security contract, synthetic fixtures and validation evidence are linked from that architecture. The [UNIVERSALIS eleven-source master toolchain register](https://github.com/C2O-Chaos-to-Order/Research-for-the-UNIVERSALIS-Ecosystem/blob/implementation/repository-foundation-2026-11-12/TOOLCHAIN_COVERAGE_REGISTER.md) preserves candidate provenance, verification caveats and integration limits.
+
+Public repositories contain only portable contracts and synthetic examples: no C2O-private policies, keys, incident data, authority records or target inventories. External security tools remain candidates until source, license, release, data flow, platform and enforcement behavior are reviewed. No security product or offensive assessment system is claimed integrated.
