@@ -245,7 +245,7 @@ def self_test(root: Path) -> None:
         except (ValueError, KeyError, TypeError):
             continue
         raise AssertionError("negative test unexpectedly passed: " + label)
-    print("Powers energy contract self-test: PASS (4 positive profiles/records, 9 negative cases)")
+    print("Powers energy contract self-test: PASS (4 positive profiles/records, 10 negative cases)")
 
 def check(root: Path, profile: str) -> int:
     try:
