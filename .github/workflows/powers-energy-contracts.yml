@@ -1,0 +1,21 @@
+name: Powers Energy Contracts
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate-powers-energy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Runtime
+        run: python --version
+      - name: Powers contract positive and negative tests
+        run: python .github/scripts/powers_energy_contract.py --self-test
+      - name: Validate UNIVERSALIS Powers fixtures
+        run: python .github/scripts/powers_energy_contract.py --check --profile universalis
+      - name: Repository quality baseline
+        run: python .github/scripts/repository_quality_baseline.py --self-test --check

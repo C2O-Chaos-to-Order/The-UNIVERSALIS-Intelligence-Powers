@@ -32,3 +32,14 @@ The Markdown file is the canonical text. The `.docx` is a convenience companion.
 | [The-UNIVERSALIS-Intelligence-Powers](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers) | Intelligence Powers (I-P) |
 | [The-UNIVERSALIS-Ontology](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Ontology) | Master Ontology: Human and Intelligence |
 | [The-UNIVERSALIS-Encyclopedias](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Encyclopedias) | Public encyclopedia placeholder (no commits as of the 2026-11-10 inventory) |
+
+
+## Intelligence Powers governance toolchain
+
+The canonical `Intelligence_Powers.md` I-P-01–I-P-12 taxonomy remains unchanged. This implementation branch adds a separate open governance toolchain for policy metadata, AuthZEN-compatible requests/responses, enforcement receipts, audit records, sandbox attestations, governance benchmarks, reputation signals and attenuable grants.
+
+- [Open governance architecture](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/INTELLIGENCE_POWERS_GOVERNANCE_ARCHITECTURE.md)
+- [Portable schema family](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/tree/implementation/repository-foundation-2026-11-12/schemas/powers)
+- [Validation record](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/INTELLIGENCE_POWERS_VALIDATION.md)
+
+No C2O-private policy, identity, permit, authority token, signing key, budget or enforcement trace is part of this public repository.

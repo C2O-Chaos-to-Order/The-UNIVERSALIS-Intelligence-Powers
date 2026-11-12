@@ -1,0 +1,28 @@
+name: Intelligence Powers Contract Validation
+on:
+  push:
+    paths:
+      - "schemas/powers/**"
+      - "examples/powers/**"
+      - ".github/scripts/intelligence_powers_contract.py"
+      - ".github/workflows/intelligence-powers-contract.yml"
+  pull_request:
+    paths:
+      - "schemas/powers/**"
+      - "examples/powers/**"
+      - ".github/scripts/intelligence_powers_contract.py"
+      - ".github/workflows/intelligence-powers-contract.yml"
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install JSON Schema validator
+        run: python -m pip install 'jsonschema>=4.23,<5'
+      - name: Validate public governance contracts
+        run: python .github/scripts/intelligence_powers_contract.py
