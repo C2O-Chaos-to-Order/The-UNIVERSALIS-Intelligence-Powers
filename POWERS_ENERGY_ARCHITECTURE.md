@@ -107,3 +107,25 @@ The shared energy-budget grant schema defines holder binding and attenuation. It
 | Carbon scheduling / inference / workflow integrations | Not implemented |
 | Candidate source/license/security verification | Pending |
 | Independent synergy benchmark | Not performed |
+
+
+## 10. Power topology and optimizer competence evidence
+
+Represent the energy system as a queryable graph: meter → host/device → runtime → model/request/task → agent/workflow → policy/budget → receipt → verified outcome. Map dependencies and blast radius before changing model routes, accelerator placement, batch windows, fan-out, or frequency controls. Kula, reponova, AnaxiGraph, GRASP, FlowForge, and wikifier are candidate mapping/impact tools; the MokuGraph JSON contract is a candidate shared rendering format. They are not installed or verified by this change.
+
+Optimizer competence is a separate capability claim, not an energy measurement. Kredo, ToolGym, and SkillSeal are candidate skill-attestation and qualification patterns; they must not be treated as energy sensors or as authorization gates. PACT Passport is a candidate shared holder-bound delegation substrate, not a central trust authority.
+
+## 11. Owner-supplied benchmark figures requiring independent reproduction
+
+The following figures are carried forward as claims from the supplied proposal only. They are not verified performance evidence, adoption criteria, or guarantees:
+
+| Candidate | Reported figure in supplied proposal | Required reproduction controls |
+|---|---|---|
+| Green SARC | 47% fewer tokens, 68% lower USD cost, 67% lower carbon, zero gate rejections | Workload and baseline definition, model/provider, gate behavior, energy/carbon instrumentation, latency and quality |
+| ModeSwitch-LLM | 0.48× mean energy ratio; 51.7% lower energy per generated token | Same model, hardware, batch/concurrency, output quality, and sampling boundary |
+| Murakkab | Up to 2.8× lower GPU usage, 3.7× lower energy, 4.3× lower cost | Workflow mix, SLOs, accelerator inventory, orchestration overhead, repeated trials |
+| KAIROS | 27% average and up to 39.8% power reduction | Workload context, utilization, latency, hardware, and control stability |
+| EcoxPU | 31.9–45% energy reduction (42% average) with at most 6% latency overhead | Supported accelerator stack, task placement, measured power boundary, latency/quality trade-offs |
+| ebb-ai proposal context | 30–60% intra-day grid-intensity variation and a 50% batch-API discount | ISO/region, date/time series, provider terms, eligibility, and time-of-use baseline |
+
+Do not promote these figures into default savings assumptions. Store the source, benchmark version, workload, device/provider, method, uncertainty, and independent reproduction receipt for each claim.
