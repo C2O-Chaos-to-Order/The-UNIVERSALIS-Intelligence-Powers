@@ -71,3 +71,9 @@ See `POWERS_ENERGY_ARCHITECTURE.md` for the open measurement, carbon scheduling,
 The energy architecture records reported optimizer benchmark figures as unverified claims and ties energy receipts to workload/SLO hashes and a reconciled measurement graph; see `POWERS_ENERGY_ARCHITECTURE.md`.
 
 Powers energy contract CI is passing for the current v1 semantic checks. Exact runs, negative cases, and remaining cryptographic/schema/measurement limitations are recorded in `POWERS_ENERGY_VALIDATION.md`.
+
+## Four-document source coverage — 2026-11-12
+
+The complete owner-supplied tool inventory and status matrix for Human Knowledge, Powers, Human Capabilities, and Mapping/Matrix/Organization/Ecosystem Mapping is maintained in the UNIVERSALIS research register: https://github.com/C2O-Chaos-to-Order/Research-for-the-UNIVERSALIS-Ecosystem/blob/implementation/repository-foundation-2026-11-12/FOUR_DOCUMENT_TOOLCHAIN_COVERAGE.md.
+
+Treat every third-party name in that register as a proposed candidate/reference pattern until canonical source, license, maintenance, security, compatibility, and behavior are reviewed. The register distinguishes documented tools, basic contracts, passing CI, and actual integrations. This repository owns only the parts assigned to its domain. No C2O-private repository links or policy values are part of this public register.
