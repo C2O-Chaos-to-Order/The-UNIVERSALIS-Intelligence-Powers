@@ -157,11 +157,14 @@ def calculate_synergy(item: dict) -> float:
     fed = item["federated"]
     c2o = item["isolated_c2o"]
     uni = item["isolated_universalis"]
-    if not all(part["slo_adherent"] for part in (fed, c2o, uni)):
+    scenarios = (fed, c2o, uni)
+    if not all(part["slo_adherent"] for part in scenarios):
         raise ValueError("synergy comparison requires SLO-adherent scenarios")
-    if min(fed["useful_work_units"], c2o["useful_work_units"], uni["useful_work_units"]) <= 0:
+    if min(part["useful_work_units"] for part in scenarios) <= 0:
         raise ValueError("all scenarios require positive useful work")
-    if min(fed["energy_joules"], c2o["energy_joules"], uni["energy_joules"]) <= 0:
+    if any(part["useful_work_units"] > 0 and part["verified_outcomes"] <= 0 for part in scenarios):
+        raise ValueError("useful work units require verified outcomes in every scenario")
+    if min(part["energy_joules"] for part in scenarios) <= 0:
         raise ValueError("all scenarios require positive energy measurements")
     if item["accounting_policy"]["overlap_reconciliation"] != "no_double_count":
         raise ValueError("overlapping PDU/RAPL/Kepler/GPU measurements must be reconciled, never simply summed")
@@ -226,6 +229,10 @@ def self_test(root: Path) -> None:
     bad["measurement_method"] = "estimated"
     bad["estimator_id"] = None
     failures.append((lambda: validate_measurement(bad), "estimated meter without estimator"))
+
+    bad = copy.deepcopy(synergy)
+    bad["isolated_c2o"]["verified_outcomes"] = 0
+    failures.append((lambda: validate_synergy(bad), "unverified useful work"))
 
     bad = copy.deepcopy(synergy)
     bad["accounting_policy"]["overlap_reconciliation"] = "sum_all"
