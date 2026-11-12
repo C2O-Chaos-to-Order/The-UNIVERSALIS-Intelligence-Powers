@@ -78,15 +78,20 @@ def validate_budget(grant: dict) -> None:
     parent = grant.get("parent_constraints")
     if not isinstance(parent, dict):
         raise ValueError("delegated grants require parent constraints")
-    parent_start = parse_time(parent["not_before"], "parent_constraints.not_before")\n    parent_end = parse_time(parent["expires_at"], "parent_constraints.expires_at")
+    parent_start = parse_time(parent["not_before"], "parent_constraints.not_before")
+    parent_end = parse_time(parent["expires_at"], "parent_constraints.expires_at")
+    if start < parent_start:
+        raise ValueError("child grant starts before parent validity")
+    if end > parent_end:
+        raise ValueError("child grant expiry widens parent validity")
     if grant["max_energy_joules"] > parent["max_energy_joules"]:
         raise ValueError("child energy budget widens parent authority")
     if not set(grant["scope"]).issubset(set(parent["scope"])):
         raise ValueError("child scope widens parent authority")
     if not set(grant["operations"]).issubset(set(parent["operations"])):
         raise ValueError("child operations widen parent authority")
-    if end > parent_end:
-        raise ValueError("child grant expiry widens parent validity")
+    if not grant.get("issuer_receipt_ref") or not grant.get("holder_receipt_ref"):
+        raise ValueError("delegated budget grant requires receipts for issuer and holder")
     signature = grant.get("signature", {})
     if signature.get("algorithm") != "Ed25519" or not signature.get("value"):
         raise ValueError("energy budget grant requires an Ed25519 signature field")
@@ -96,11 +101,15 @@ def validate_receipt(receipt: dict, measurement: dict, grant: dict, profile: str
     if receipt.get("schema_version") != "1.0.0":
         raise ValueError("unsupported receipt schema version")
     start, end = check_window(receipt["execution_window"], "receipt.execution_window")
-    forecasted_at = parse_time(receipt["forecast"]["forecasted_at"], "receipt.forecast.forecasted_at")
+    forecast = receipt["forecast"]
+    forecasted_at = parse_time(forecast["forecasted_at"], "receipt.forecast.forecasted_at")
     if forecasted_at >= start:
         raise ValueError("forecast must be recorded before task execution begins")
-    forecast = receipt["forecast"]
-    if forecast.get("upper_bound_method") not in {"conformal", "quantile", "deterministic", "other"}:\n        raise ValueError("forecast upper bound requires a declared method")\n    if not 0 < forecast.get("confidence_level", 0) < 1:\n        raise ValueError("forecast confidence_level must be between 0 and 1")\n    for expected, upper in (
+    if forecast.get("upper_bound_method") not in {"conformal", "quantile", "deterministic", "other"}:
+        raise ValueError("forecast upper bound requires a declared method")
+    if not 0 < forecast.get("confidence_level", 0) < 1:
+        raise ValueError("forecast confidence_level must be between 0 and 1")
+    for expected, upper in (
         ("energy_expected_joules", "energy_upper_joules"),
         ("co2e_expected_grams", "co2e_upper_grams"),
         ("cost_expected_usd", "cost_upper_usd"),
@@ -111,6 +120,9 @@ def validate_receipt(receipt: dict, measurement: dict, grant: dict, profile: str
         raise ValueError("actual and top-level measurement references must agree")
     if measurement["measurement_id"] not in receipt["measurement_refs"]:
         raise ValueError("receipt must reference the supplied measurement fixture")
+    measure_start, measure_end = check_window(measurement["interval"], "measurement.interval")
+    if measure_start < start or measure_end > end:
+        raise ValueError("referenced measurement interval must be within the task execution window")
     actual = receipt["actual"]
     if receipt["outcome"]["useful_work_units"] > 0:
         if receipt["outcome"]["status"] != "succeeded" or not receipt["outcome"]["verified_outcome"] or not receipt["outcome"]["slo_adherent"]:
@@ -120,7 +132,7 @@ def validate_receipt(receipt: dict, measurement: dict, grant: dict, profile: str
     gate = receipt["gate"]
     if gate["decision"] in {"denied", "deferred"} and receipt["outcome"]["status"] == "succeeded":
         raise ValueError("a denied or deferred action cannot be recorded as executed successfully")
-    if gate["gate_type"] in {"human_permit", "combined"} and gate.get("permit_ref") is None:
+    if gate["gate_type"] in {"human_permit", "combined"} and not gate.get("permit_ref"):
         raise ValueError("human-permit gate requires permit_ref")
     if gate["gate_type"] in {"energy_budget", "combined"}:
         if not gate.get("budget_grant_ref"):
@@ -132,8 +144,13 @@ def validate_receipt(receipt: dict, measurement: dict, grant: dict, profile: str
     if profile == "c2o" and receipt["outcome"]["status"] == "succeeded":
         if gate["gate_type"] not in {"energy_budget", "human_permit", "combined"} or gate["decision"] != "allowed":
             raise ValueError("C2O executed work requires an explicit allowed governance gate")
-    if actual["energy_joules"] < 0 or actual["co2e_grams"] < 0 or actual["cost_usd"] < 0:
-        raise ValueError("actual energy, emissions, and cost cannot be negative")
+    if actual["energy_joules"] < 0 or actual["co2e_grams"] < 0 or actual["cost_usd"] < 0 or actual["carbon_intensity_g_per_kwh"] < 0:
+        raise ValueError("actual energy, emissions, cost, and carbon intensity cannot be negative")
+    if not actual.get("carbon_intensity_source"):
+        raise ValueError("actual carbon intensity requires a source reference")
+    expected_co2e = actual["energy_joules"] / 3600000.0 * actual["carbon_intensity_g_per_kwh"]
+    if abs(actual["co2e_grams"] - expected_co2e) > max(1e-5, expected_co2e * 0.02):
+        raise ValueError("actual CO2e does not reconcile with joules and carbon intensity")
     parse_time(receipt["attestation"].get("signed_at") or receipt["execution_window"]["end"], "receipt.attestation.signed_at")
 
 def calculate_synergy(item: dict) -> float:
@@ -190,6 +207,10 @@ def self_test(root: Path) -> None:
     failures.append((lambda: validate_budget(bad), "parent-budget widening"))
 
     bad = copy.deepcopy(grant)
+    bad["not_before"] = "2026-11-10T00:00:00Z"
+    failures.append((lambda: validate_budget(bad), "grant starts before parent"))
+
+    bad = copy.deepcopy(grant)
     bad["scope"].append("private-extra-scope")
     failures.append((lambda: validate_budget(bad), "scope widening"))
 
@@ -210,6 +231,10 @@ def self_test(root: Path) -> None:
     bad["accounting_policy"]["overlap_reconciliation"] = "sum_all"
     failures.append((lambda: validate_synergy(bad), "double-counted measurement layers"))
 
+    bad = copy.deepcopy(receipt)
+    bad["actual"]["co2e_grams"] = 99
+    failures.append((lambda: validate_receipt(bad, measurement, grant, "universalis"), "actual CO2e inconsistent with energy and carbon intensity"))
+
     bad = copy.deepcopy(synergy)
     bad["computed_synergy_factor"] = 99
     failures.append((lambda: validate_synergy(bad), "forged synergy factor"))
@@ -220,7 +245,7 @@ def self_test(root: Path) -> None:
         except (ValueError, KeyError, TypeError):
             continue
         raise AssertionError("negative test unexpectedly passed: " + label)
-    print("Powers energy contract self-test: PASS (4 positive profiles/records, 8 negative cases)")
+    print("Powers energy contract self-test: PASS (4 positive profiles/records, 9 negative cases)")
 
 def check(root: Path, profile: str) -> int:
     try:
