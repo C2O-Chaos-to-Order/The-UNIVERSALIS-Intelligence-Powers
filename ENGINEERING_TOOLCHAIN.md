@@ -81,3 +81,14 @@ Treat every third-party name in that register as a proposed candidate/reference 
 ## Master toolchain coverage register — 2026-11-12
 
 The current public inventory for the original four toolchain documents plus the Intelligence Capabilities source is maintained in the UNIVERSALIS research register: https://github.com/C2O-Chaos-to-Order/Research-for-the-UNIVERSALIS-Ecosystem/blob/implementation/repository-foundation-2026-11-12/TOOLCHAIN_COVERAGE_REGISTER.md. It distinguishes documentation, basic contracts, passing CI, and actual integrations. This public register contains no links to C2O-private owner repositories or policy values.
+
+
+## Intelligence Powers governance toolchain — 2026-11-12
+
+The canonical taxonomy remains in `Intelligence_Powers.md`. This separate public toolchain provides portable policy/authorization, receipt, audit, sandbox-attestation, benchmark, reputation and attenuable-grant contracts.
+
+- [UNIVERSALIS open governance architecture](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/INTELLIGENCE_POWERS_GOVERNANCE_ARCHITECTURE.md)
+- [Shared governance schema](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/schemas/powers/governance-contracts.v1.schema.json)
+- [Validation record](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/blob/implementation/repository-foundation-2026-11-12/INTELLIGENCE_POWERS_VALIDATION.md)
+
+Cedar and OPA/Rego are peer policy-language options. AuthZEN 1.0 provides the PDP/PEP API surface, not a policy engine. SwarmScore remains an individual IETF Internet-Draft, not an adopted IETF standard. Candidate runtimes and product metrics are not assumed installed or verified. No shared schema carries C2O-private policy or authority material.
