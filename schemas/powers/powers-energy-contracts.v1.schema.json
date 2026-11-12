@@ -277,7 +277,9 @@
             "cost_upper_usd",
             "carbon_intensity_g_per_kwh",
             "carbon_intensity_source",
-            "method_ref"
+            "method_ref",
+            "upper_bound_method",
+            "confidence_level"
           ],
           "properties": {
             "forecasted_at": {
@@ -319,6 +321,25 @@
             "method_ref": {
               "type": "string",
               "minLength": 1
+            },
+            "upper_bound_method": {
+              "enum": [
+                "conformal",
+                "quantile",
+                "deterministic",
+                "other"
+              ]
+            },
+            "confidence_level": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "calibration_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
             }
           }
         },
@@ -517,7 +538,9 @@
         "expires_at",
         "parent_constraints",
         "holder_bound",
-        "signature"
+        "signature",
+        "issuer_receipt_ref",
+        "holder_receipt_ref"
       ],
       "properties": {
         "schema_version": {
@@ -589,7 +612,8 @@
             "max_energy_joules",
             "scope",
             "operations",
-            "expires_at"
+            "expires_at",
+            "not_before"
           ],
           "properties": {
             "max_energy_joules": {
@@ -615,6 +639,10 @@
               "uniqueItems": true
             },
             "expires_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "not_before": {
               "type": "string",
               "format": "date-time"
             }
@@ -645,6 +673,14 @@
             "string",
             "null"
           ]
+        },
+        "issuer_receipt_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holder_receipt_ref": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
