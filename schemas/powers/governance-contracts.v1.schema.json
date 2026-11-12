@@ -184,7 +184,11 @@
             "block",
             "revoke",
             "rate_limit",
-            "redact"
+            "redact",
+            "ask",
+            "warn",
+            "escalate",
+            "redirect"
           ]
         },
         "reason_codes": {
@@ -341,6 +345,20 @@
         },
         "fixture_only": {
           "type": "boolean"
+        },
+        "context_taint_level": {
+          "enum": [
+            "trusted",
+            "untrusted",
+            "sanitized",
+            "mixed"
+          ]
+        },
+        "sanitizer_evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -731,6 +749,12 @@
         },
         "fixture_only": {
           "type": "boolean"
+        },
+        "parent_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
