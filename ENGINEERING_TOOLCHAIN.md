@@ -63,3 +63,7 @@ The following are the canonical working records for the latest owner-supplied to
 C2O-private credentials, policies, identity state, authority tokens, private source text, and operational evidence remain inside authorized C2O environments. UNIVERSALIS remains public, local-first, inspectable, and independently operable. Only versioned, explicitly approved interface schemas and evidence packages may cross the boundary; an interface does not grant authority.
 
 All named external tools remain owner-supplied candidates or reference patterns pending canonical-source, license, maintainer, release, security, compatibility, and claim verification. No candidate is represented as installed or adopted merely because it appears in these records.
+
+## Powers energy-efficiency implementation
+
+See `POWERS_ENERGY_ARCHITECTURE.md` for the open measurement, carbon scheduling, inference efficiency, and synergy model. Shared contract and synthetic fixture are in `schemas/powers/powers-energy-contracts.v1.schema.json` and `examples/powers/powers-energy-fixtures.v1.json`; the deterministic checker is `.github/scripts/powers_energy_contract.py`. Candidate integrations remain proposed and unverified; none is installed by this change.
