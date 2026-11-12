@@ -16,7 +16,7 @@ def main():
  for k in KEYS: valid(k,FIX[k])
  assert FIX["policy_bundle"]["default_effect"]=="deny"
  assert FIX["enforcement_receipt"]["verification_status"]=="not-verified"
- g=FIX["capability_grant"]; assert set(g["delegated_capabilities"])<=set(g["capabilities"])
+ g=FIX["capability_grant"]; assert set(g["delegated_capabilities"])<=set(g["capabilities"]); assert set(g["capabilities"])<=set(g["parent_capabilities"])
  b=FIX["governance_benchmark"]; scores=[b["dimensions"][d]["score"] for d in b["dimensions"]]
  assert abs(b["overall_score"]-sum(scores)/len(scores))<1e-9
  neg=[]
@@ -28,6 +28,7 @@ def main():
  x=copy.deepcopy(FIX); x["authzen_response"]["decision"]="allow"; neg.append(("AuthZEN boolean decision","authzen_response",x))
  x=copy.deepcopy(FIX); x["reputation_signal"]["confidence"]=1.2; neg.append(("reputation confidence range","reputation_signal",x))
  x=copy.deepcopy(FIX); x["audit_record"]["record_sha256"]="bad"; neg.append(("audit digest format","audit_record",x))
+ x=copy.deepcopy(FIX); x["capability_grant"]["capabilities"]=["shell.exec"]; neg.append(("child capability must not exceed parent","capability_grant",x))
  for label,k,obj in neg:
   try: valid(k,obj)
   except Exception: continue
