@@ -4,14 +4,14 @@
 **Profile:** UNIVERSALIS  
 **Branch:** implementation/repository-foundation-2026-11-12  
 **Pull request:** #6  
-**Validated contract/validator commit:** d71fc474dea5019f9e55e3f7dda1562d45b3d863
+**Validated contract/validator commit:** 8b3602627a59741fed34393d85e8b8333c36af07
 
 ## Executed checks
 
 | Check | Result | GitHub Actions run |
 |---|---|---|
-| Powers Energy Contracts | Passed | [Run 43235526829](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43235526829) |
-| Repository quality baseline | Passed | [Run 43235526770](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43235526770) |
+| Powers Energy Contracts | Passed | [Run 43236626891](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43236626891) |
+| Repository quality baseline | Passed | [Run 43236626902](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43236626902) |
 
 The contract workflow completed its Python runtime step, the positive and negative self-tests, repository-fixture validation using the universalis profile, and the repository baseline check. The repository quality workflow completed the validator self-test and JSON syntax validation.
 
@@ -60,6 +60,6 @@ Add a pinned standards-compliant JSON Schema 2020-12 validator, then implement o
 
 ## Latest branch-head confirmation
 
-The complete contract workflow and repository-quality workflow were also rerun successfully on branch head `04388adfc30915c2f5310f06c24696dadfec3c1d`, after the architecture and toolchain evidence records were updated:
-- [Powers Energy Contracts run 43235743599](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43235743599) — all steps passed.
-- [Repository quality baseline run 43235743973](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43235743973) — all steps passed.
+The complete contract workflow and repository-quality workflow passed on the latest contract/validator commit `8b3602627a59741fed34393d85e8b8333c36af07`:
+- [Powers Energy Contracts run 43236626891](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43236626891) — all steps passed, including ten negative cases and the UNIVERSALIS fixture profile.
+- [Repository quality baseline run 43236626902](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43236626902) — all steps passed.
