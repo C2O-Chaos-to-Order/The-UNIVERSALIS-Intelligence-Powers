@@ -20,3 +20,15 @@ Limits: no live PDP/PEP, enforcement runtime, sandbox, cryptographic verifier, l
 All jobs and individual workflow steps completed successfully. The public workflow validated only the portable schema family and synthetic fixtures. It does not reference or execute C2O-private schemas or validation scripts.
 
 This evidence proves the recorded schema/fixture/semantic contract checks for the tested revision. It does not prove a live runtime, deployed service, legal compliance, physical-device safety, or cryptographic verification of the synthetic signatures. Later architecture and index documentation commits did not alter the tested schema, fixture, validator, or workflow content.
+
+
+## Expanded contract revision — current implementation branch
+
+Expanded contract checks: additional enforcement outcomes, taint evidence fields and monotonic parent-to-child grant containment.
+
+- Contract workflow: [passed — run 43254783849](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43254783849)
+- Repository quality baseline: [passed — run 43254784031](https://github.com/C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers/actions/runs/43254784031)
+
+All jobs and individual steps completed successfully on the current PR head/contract-bearing revision. This public workflow tests portable schemas and synthetic examples only; no C2O-private schema or validation script is present.
+
+The schema, fixture and semantic validator blobs have been compared between the C2O and UNIVERSALIS branches and are byte-identical for this domain. The C2O-only private decision schema is absent from the UNIVERSALIS branch.
