@@ -67,3 +67,5 @@ All named external tools remain owner-supplied candidates or reference patterns 
 ## Powers energy-efficiency implementation
 
 See `POWERS_ENERGY_ARCHITECTURE.md` for the open measurement, carbon scheduling, inference efficiency, and synergy model. Shared contract and synthetic fixture are in `schemas/powers/powers-energy-contracts.v1.schema.json` and `examples/powers/powers-energy-fixtures.v1.json`; the deterministic checker is `.github/scripts/powers_energy_contract.py`. Candidate integrations remain proposed and unverified; none is installed by this change.
+
+The energy architecture records reported optimizer benchmark figures as unverified claims and ties energy receipts to workload/SLO hashes and a reconciled measurement graph; see `POWERS_ENERGY_ARCHITECTURE.md`.
