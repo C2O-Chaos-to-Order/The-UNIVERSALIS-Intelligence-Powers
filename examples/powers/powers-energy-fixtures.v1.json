@@ -1,0 +1,178 @@
+{
+  "$schema": "urn:c2o-universalis:powers:energy-contracts:v1",
+  "fixture_status": "synthetic_nonproduction",
+  "fixtures": {
+    "measurement": {
+      "schema_version": "1.0.0",
+      "measurement_id": "measurement-host-001",
+      "meter_kind": "pdu",
+      "measurement_method": "direct_counter",
+      "scope": {
+        "kind": "host",
+        "entity_id": "lab-host-01",
+        "boundary_id": "lab-boundary-01",
+        "parent_scope_id": null
+      },
+      "accounting_group": "lab-run-001",
+      "interval": {
+        "start": "2026-11-12T10:00:00Z",
+        "end": "2026-11-12T10:01:00Z"
+      },
+      "energy_joules": 1200,
+      "average_power_watts": 20,
+      "sample_frequency_hz": 1,
+      "uncertainty_fraction": 0.03,
+      "estimator_id": null,
+      "source_ref": "meter:pdu-01",
+      "captured_at": "2026-11-12T10:01:01Z",
+      "overlaps_measurement_ids": [],
+      "allocation_basis": "direct_scope",
+      "calibration_ref": "calibration:fixture-01"
+    },
+    "task_receipt": {
+      "schema_version": "1.0.0",
+      "receipt_id": "receipt-task-001",
+      "task_id": "task-001",
+      "workload_cohort_id": "cohort-benchmark-01",
+      "execution_window": {
+        "start": "2026-11-12T10:00:00Z",
+        "end": "2026-11-12T10:01:00Z"
+      },
+      "provider": {
+        "provider_id": "local-lab",
+        "region": "test-region",
+        "model_id": "fixture-model"
+      },
+      "forecast": {
+        "forecasted_at": "2026-11-12T09:59:00Z",
+        "energy_expected_joules": 900,
+        "energy_upper_joules": 1100,
+        "co2e_expected_grams": 0.05,
+        "co2e_upper_grams": 0.07,
+        "cost_expected_usd": 0.001,
+        "cost_upper_usd": 0.002,
+        "carbon_intensity_g_per_kwh": 150,
+        "carbon_intensity_source": "fixture-grid-feed",
+        "method_ref": "forecast-method:fixture-v1"
+      },
+      "actual": {
+        "energy_joules": 1000,
+        "co2e_grams": 0.0417,
+        "cost_usd": 0.001,
+        "tokens": 400,
+        "measurement_refs": [
+          "measurement-host-001"
+        ]
+      },
+      "outcome": {
+        "status": "succeeded",
+        "slo_adherent": true,
+        "verified_outcome": true,
+        "useful_work_units": 1,
+        "verification_ref": "verification:fixture-001"
+      },
+      "gate": {
+        "gate_type": "combined",
+        "decision": "allowed",
+        "permit_ref": "permit:synthetic-001",
+        "budget_grant_ref": "grant-001",
+        "decision_receipt_ref": "decision:synthetic-001"
+      },
+      "measurement_refs": [
+        "measurement-host-001"
+      ],
+      "attestation": {
+        "payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "signer_id": "fixture-signer",
+        "signature_algorithm": "Ed25519",
+        "signature": "synthetic-fixture-only-not-a-valid-signature",
+        "signed_at": "2026-11-12T10:01:02Z"
+      }
+    },
+    "energy_budget_grant": {
+      "schema_version": "1.0.0",
+      "grant_id": "grant-001",
+      "issuer_id": "fixture-root",
+      "holder_id": "agent-fixture-01",
+      "holder_key_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "parent_grant_id": "grant-root-001",
+      "scope": [
+        "cohort-benchmark-01"
+      ],
+      "operations": [
+        "inference",
+        "batch_job"
+      ],
+      "max_energy_joules": 5000,
+      "not_before": "2026-11-12T00:00:00Z",
+      "expires_at": "2026-11-13T00:00:00Z",
+      "parent_constraints": {
+        "max_energy_joules": 10000,
+        "scope": [
+          "cohort-benchmark-01",
+          "cohort-other"
+        ],
+        "operations": [
+          "inference",
+          "batch_job",
+          "training"
+        ],
+        "expires_at": "2026-11-14T00:00:00Z"
+      },
+      "holder_bound": true,
+      "signature": {
+        "algorithm": "Ed25519",
+        "value": "synthetic-fixture-only-not-a-valid-signature"
+      },
+      "revocation_ref": null
+    },
+    "synergy_evaluation": {
+      "schema_version": "1.0.0",
+      "evaluation_id": "synergy-001",
+      "workload_cohort_id": "cohort-benchmark-01",
+      "work_unit_catalog_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "slo_profile_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "window": {
+        "start": "2026-11-12T10:00:00Z",
+        "end": "2026-11-12T11:00:00Z"
+      },
+      "accounting_policy": {
+        "boundary_id": "federated-boundary-01",
+        "includes": [
+          "compute",
+          "memory",
+          "network",
+          "orchestration",
+          "retries"
+        ],
+        "overlap_reconciliation": "no_double_count",
+        "measurement_set_ref": "measurement-set:001"
+      },
+      "federated": {
+        "useful_work_units": 100,
+        "energy_joules": 500000,
+        "verified_outcomes": 100,
+        "slo_adherent": true
+      },
+      "isolated_c2o": {
+        "useful_work_units": 50,
+        "energy_joules": 300000,
+        "verified_outcomes": 50,
+        "slo_adherent": true
+      },
+      "isolated_universalis": {
+        "useful_work_units": 50,
+        "energy_joules": 300000,
+        "verified_outcomes": 50,
+        "slo_adherent": true
+      },
+      "computed_synergy_factor": 1.2,
+      "formula_version": "S-v1",
+      "receipts": [
+        "receipt-001",
+        "receipt-002"
+      ],
+      "evaluated_at": "2026-11-12T11:05:00Z"
+    }
+  }
+}
