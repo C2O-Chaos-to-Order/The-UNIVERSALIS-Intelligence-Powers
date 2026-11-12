@@ -1,0 +1,840 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:c2o-universalis:powers:energy-contracts:v1",
+  "title": "C2O–UNIVERSALIS Powers Energy Contracts v1",
+  "description": "Shared definitions for measured energy, per-task forecast/actual receipts, attenuable energy-budget grants, and federated synergy evaluations. Ecosystem policies remain separate.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/measurement"
+    },
+    {
+      "$ref": "#/$defs/task_receipt"
+    },
+    {
+      "$ref": "#/$defs/energy_budget_grant"
+    },
+    {
+      "$ref": "#/$defs/synergy_evaluation"
+    }
+  ],
+  "$defs": {
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "measurement_id",
+        "meter_kind",
+        "measurement_method",
+        "scope",
+        "accounting_group",
+        "interval",
+        "energy_joules",
+        "sample_frequency_hz",
+        "uncertainty_fraction",
+        "source_ref",
+        "captured_at",
+        "overlaps_measurement_ids"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "measurement_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "meter_kind": {
+          "enum": [
+            "pdu",
+            "rapl_cpu_package",
+            "rapl_memory",
+            "kepler_container",
+            "gpu_nvml",
+            "codecarbon",
+            "zeus",
+            "joular_core",
+            "perfetto_wattson",
+            "joule_api",
+            "other"
+          ]
+        },
+        "measurement_method": {
+          "enum": [
+            "direct_counter",
+            "instrumented",
+            "estimated",
+            "derived"
+          ]
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "entity_id",
+            "boundary_id"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "site",
+                "rack",
+                "host",
+                "node",
+                "pod",
+                "container",
+                "process",
+                "thread",
+                "task",
+                "request",
+                "model_run"
+              ]
+            },
+            "entity_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "boundary_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "parent_scope_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "accounting_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "energy_joules": {
+          "type": "number",
+          "minimum": 0
+        },
+        "average_power_watts": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sample_frequency_hz": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "uncertainty_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "estimator_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "overlaps_measurement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "allocation_basis": {
+          "enum": [
+            "direct_scope",
+            "cgroup_cpu_time",
+            "thread_trace",
+            "gpu_device",
+            "proportional",
+            "none"
+          ]
+        },
+        "calibration_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "task_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "receipt_id",
+        "task_id",
+        "workload_cohort_id",
+        "execution_window",
+        "provider",
+        "forecast",
+        "actual",
+        "outcome",
+        "gate",
+        "measurement_refs",
+        "attestation"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workload_cohort_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution_window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "provider": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provider_id",
+            "region"
+          ],
+          "properties": {
+            "provider_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "region": {
+              "type": "string",
+              "minLength": 1
+            },
+            "model_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "forecast": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "forecasted_at",
+            "energy_expected_joules",
+            "energy_upper_joules",
+            "co2e_expected_grams",
+            "co2e_upper_grams",
+            "cost_expected_usd",
+            "cost_upper_usd",
+            "carbon_intensity_g_per_kwh",
+            "carbon_intensity_source",
+            "method_ref"
+          ],
+          "properties": {
+            "forecasted_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "energy_expected_joules": {
+              "type": "number",
+              "minimum": 0
+            },
+            "energy_upper_joules": {
+              "type": "number",
+              "minimum": 0
+            },
+            "co2e_expected_grams": {
+              "type": "number",
+              "minimum": 0
+            },
+            "co2e_upper_grams": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost_expected_usd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost_upper_usd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "carbon_intensity_g_per_kwh": {
+              "type": "number",
+              "minimum": 0
+            },
+            "carbon_intensity_source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "method_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "actual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energy_joules",
+            "co2e_grams",
+            "cost_usd",
+            "tokens",
+            "measurement_refs"
+          ],
+          "properties": {
+            "energy_joules": {
+              "type": "number",
+              "minimum": 0
+            },
+            "co2e_grams": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost_usd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "tokens": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "measurement_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "outcome": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "slo_adherent",
+            "verified_outcome",
+            "useful_work_units"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "succeeded",
+                "failed",
+                "partial",
+                "cancelled",
+                "not_run"
+              ]
+            },
+            "slo_adherent": {
+              "type": "boolean"
+            },
+            "verified_outcome": {
+              "type": "boolean"
+            },
+            "useful_work_units": {
+              "type": "number",
+              "minimum": 0
+            },
+            "verification_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "gate_type",
+            "decision",
+            "permit_ref"
+          ],
+          "properties": {
+            "gate_type": {
+              "enum": [
+                "none",
+                "energy_budget",
+                "human_permit",
+                "combined"
+              ]
+            },
+            "decision": {
+              "enum": [
+                "allowed",
+                "denied",
+                "deferred",
+                "not_required"
+              ]
+            },
+            "permit_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "budget_grant_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "decision_receipt_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "measurement_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "attestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "payload_sha256",
+            "signer_id",
+            "signature_algorithm",
+            "signature"
+          ],
+          "properties": {
+            "payload_sha256": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{64}$"
+            },
+            "signer_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "signature_algorithm": {
+              "enum": [
+                "Ed25519",
+                "none"
+              ]
+            },
+            "signature": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "signed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "energy_budget_grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "grant_id",
+        "issuer_id",
+        "holder_id",
+        "holder_key_fingerprint",
+        "parent_grant_id",
+        "scope",
+        "operations",
+        "max_energy_joules",
+        "not_before",
+        "expires_at",
+        "parent_constraints",
+        "holder_bound",
+        "signature"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "grant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issuer_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holder_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holder_key_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "parent_grant_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "inference",
+              "batch_job",
+              "training",
+              "agent_fanout",
+              "scheduling",
+              "migration",
+              "frequency_control"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "max_energy_joules": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "not_before": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "parent_constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_energy_joules",
+            "scope",
+            "operations",
+            "expires_at"
+          ],
+          "properties": {
+            "max_energy_joules": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "scope": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "operations": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "expires_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "holder_bound": {
+          "const": true
+        },
+        "signature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "value"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "Ed25519"
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "revocation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "synergy_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "evaluation_id",
+        "workload_cohort_id",
+        "work_unit_catalog_sha256",
+        "slo_profile_sha256",
+        "window",
+        "accounting_policy",
+        "federated",
+        "isolated_c2o",
+        "isolated_universalis",
+        "computed_synergy_factor",
+        "formula_version",
+        "receipts",
+        "evaluated_at"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "evaluation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workload_cohort_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "work_unit_catalog_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "slo_profile_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "accounting_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "boundary_id",
+            "includes",
+            "overlap_reconciliation",
+            "measurement_set_ref"
+          ],
+          "properties": {
+            "boundary_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "includes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "compute",
+                  "memory",
+                  "storage",
+                  "network",
+                  "orchestration",
+                  "retries",
+                  "idle_allocation"
+                ]
+              }
+            },
+            "overlap_reconciliation": {
+              "const": "no_double_count"
+            },
+            "measurement_set_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "federated": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "useful_work_units",
+            "energy_joules",
+            "verified_outcomes",
+            "slo_adherent"
+          ],
+          "properties": {
+            "useful_work_units": {
+              "type": "number",
+              "minimum": 0
+            },
+            "energy_joules": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "verified_outcomes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "slo_adherent": {
+              "type": "boolean"
+            }
+          }
+        },
+        "isolated_c2o": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "useful_work_units",
+            "energy_joules",
+            "verified_outcomes",
+            "slo_adherent"
+          ],
+          "properties": {
+            "useful_work_units": {
+              "type": "number",
+              "minimum": 0
+            },
+            "energy_joules": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "verified_outcomes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "slo_adherent": {
+              "type": "boolean"
+            }
+          }
+        },
+        "isolated_universalis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "useful_work_units",
+            "energy_joules",
+            "verified_outcomes",
+            "slo_adherent"
+          ],
+          "properties": {
+            "useful_work_units": {
+              "type": "number",
+              "minimum": 0
+            },
+            "energy_joules": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "verified_outcomes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "slo_adherent": {
+              "type": "boolean"
+            }
+          }
+        },
+        "computed_synergy_factor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "formula_version": {
+          "const": "S-v1"
+        },
+        "receipts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "evaluated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
