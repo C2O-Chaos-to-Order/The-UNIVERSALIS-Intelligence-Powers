@@ -78,7 +78,7 @@ def validate_budget(grant: dict) -> None:
     parent = grant.get("parent_constraints")
     if not isinstance(parent, dict):
         raise ValueError("delegated grants require parent constraints")
-    parent_end = parse_time(parent["expires_at"], "parent_constraints.expires_at")
+    parent_start = parse_time(parent["not_before"], "parent_constraints.not_before")\n    parent_end = parse_time(parent["expires_at"], "parent_constraints.expires_at")
     if grant["max_energy_joules"] > parent["max_energy_joules"]:
         raise ValueError("child energy budget widens parent authority")
     if not set(grant["scope"]).issubset(set(parent["scope"])):
@@ -100,7 +100,7 @@ def validate_receipt(receipt: dict, measurement: dict, grant: dict, profile: str
     if forecasted_at >= start:
         raise ValueError("forecast must be recorded before task execution begins")
     forecast = receipt["forecast"]
-    for expected, upper in (
+    if forecast.get("upper_bound_method") not in {"conformal", "quantile", "deterministic", "other"}:\n        raise ValueError("forecast upper bound requires a declared method")\n    if not 0 < forecast.get("confidence_level", 0) < 1:\n        raise ValueError("forecast confidence_level must be between 0 and 1")\n    for expected, upper in (
         ("energy_expected_joules", "energy_upper_joules"),
         ("co2e_expected_grams", "co2e_upper_grams"),
         ("cost_expected_usd", "cost_upper_usd"),
@@ -220,7 +220,7 @@ def self_test(root: Path) -> None:
         except (ValueError, KeyError, TypeError):
             continue
         raise AssertionError("negative test unexpectedly passed: " + label)
-    print("Powers energy contract self-test: PASS (4 positive profiles/records, 7 negative cases)")
+    print("Powers energy contract self-test: PASS (4 positive profiles/records, 8 negative cases)")
 
 def check(root: Path, profile: str) -> int:
     try:
