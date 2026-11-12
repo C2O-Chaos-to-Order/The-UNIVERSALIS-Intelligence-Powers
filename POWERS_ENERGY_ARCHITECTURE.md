@@ -131,3 +131,15 @@ The following figures are carried forward as claims from the supplied proposal o
 Do not promote these figures into default savings assumptions. Store the source, benchmark version, workload, device/provider, method, uncertainty, and independent reproduction receipt for each claim.
 
 The executed checks and their exact run IDs, including the intermediate failed attempt and correction where applicable, are recorded in `POWERS_ENERGY_VALIDATION.md`.
+
+## 12. Receipt precision and derived efficiency measures
+
+The v1 task receipt records forecast upper-bound method, confidence level, and calibration reference, as well as the actual carbon-intensity value and its source. Actual CO2e must reconcile with actual joules and the stated carbon intensity within the validator's declared tolerance. The attenuable grant records both issuer-side and holder-side receipt references; the CI checks structural presence and non-widening constraints, not signature validity.
+
+Useful derived measures include:
+- energy per verified useful-work unit (J / useful-work unit);
+- carbon per verified outcome (gCO2e / verified outcome);
+- SLO-adherent useful-work units per joule;
+- token throughput per watt, only when the time basis, token definition, and measured power window are explicitly stated.
+
+A token-per-watt number without a time basis is ambiguous. Token count, token throughput, wattage, energy, and cost are separate measures and should not be substituted for one another.
