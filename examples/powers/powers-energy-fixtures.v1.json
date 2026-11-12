@@ -62,7 +62,9 @@
         "tokens": 400,
         "measurement_refs": [
           "measurement-host-001"
-        ]
+        ],
+        "carbon_intensity_g_per_kwh": 150,
+        "carbon_intensity_source": "fixture-grid-actual-average"
       },
       "outcome": {
         "status": "succeeded",
