@@ -10,6 +10,8 @@ KEYS={"policy_bundle":"policyBundle","authzen_request":"authzenRequest","authzen
 def valid(k,obj):
  s={"$schema":SCHEMA["$schema"],"$ref":"#/$defs/"+KEYS[k],"$defs":SCHEMA["$defs"]}
  Draft202012Validator.check_schema(s); Draft202012Validator(s).validate(obj)
+ if k=="enforcement_receipt" and obj.get("fixture_only") and obj.get("verification_status")=="verified":
+  raise ValueError("fixture-only signature cannot be marked verified")
 def main():
  for k in KEYS: valid(k,FIX[k])
  assert FIX["policy_bundle"]["default_effect"]=="deny"
