@@ -143,3 +143,10 @@ Useful derived measures include:
 - token throughput per watt, only when the time basis, token definition, and measured power window are explicitly stated.
 
 A token-per-watt number without a time basis is ambiguous. Token count, token throughput, wattage, energy, and cost are separate measures and should not be substituted for one another.
+
+
+## 13. Adapter compatibility and local scheduling thresholds
+
+A Joule-compatible adapter may map `x-joule-energy-j`, `x-joule-co2-g`, and `x-joule-cost-usd` into the standard actual receipt fields (`energy_joules`, `co2e_grams`, and `cost_usd`). The header values remain claims from the serving path until their measurement provenance, scope, and uncertainty are inspectable and independently checked.
+
+UNIVERSALIS operators may set local minimum synergy or maximum energy/carbon thresholds and use them to defer, reroute, or refuse work. These are local policy inputs, not a central truth authority or shared C2O policy. A measured S above 1 does not by itself authorize a workload or prove safety.
