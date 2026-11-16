@@ -6,6 +6,8 @@ The Intelligence Powers of UNIVERSALIS.
 
 **Current repository (dated 2026-11-10):** `C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers`. `main` is at `ca64c28f762b20801d1dbbf0c77d028144787ac1` (2026-10-25 7:49:12 AM CT (America/Chicago)). This is a public UNIVERSALIS satellite under the C2O-Chaos-to-Order organization.
 
+> Rule No. 1 — "Do No Harm. Do No Destruction." Canonical: `foundation/RULE_1.md` in The-UNIVERSALIS-Ecosystem, canonical-text sha256 `b029644d741d99dab4bfcdd0d28f25a03dad67dff0a8032f2b999109f7d31317`.
+
 ## What is in this repository
 
 On that `main` HEAD there are three files:
