@@ -1,7 +1,7 @@
 # UNIVERSALIS Powers: Open Energy Measurement, Optimization, and Synergy
 
-**Owner:** UNIVERSALIS / MotherThread  
-**Boundary:** Public, inspectable, local-first, and independently operable. Do not include C2O-private budgets, carbon ceilings, permit records, policies, identities, credentials, or operational receipts.  
+**Owner:** UNIVERSALIS / MotherThread
+**Boundary:** Public, inspectable, local-first, and independently operable. Do not include C2O-private budgets, carbon ceilings, permit records, policies, identities, credentials, or operational receipts.
 **Status:** Shared schemas, synthetic fixtures, semantic checker, and CI authored in this branch. External candidate integrations are proposed, not adopted.
 
 ## 1. Powers definition

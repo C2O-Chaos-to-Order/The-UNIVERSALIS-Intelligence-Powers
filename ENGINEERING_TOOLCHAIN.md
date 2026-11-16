@@ -1,8 +1,8 @@
 # Engineering Toolchain and Initial Build Plan
 
-**Repository:** `C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers`  
-**Responsibility:** Intelligence Powers  
-**Status:** Initial executable foundation in this branch; specialized candidates remain proposed pending verification.  
+**Repository:** `C2O-Chaos-to-Order/The-UNIVERSALIS-Intelligence-Powers`
+**Responsibility:** Intelligence Powers
+**Status:** Initial executable foundation in this branch; specialized candidates remain proposed pending verification.
 **Boundary:** Open UNIVERSALIS / independently operable. No C2O-private credentials, policies, authority state, or restricted operational data.
 
 ## Universal engineering foundation

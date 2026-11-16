@@ -1,8 +1,8 @@
 # Intelligence Powers Governance Toolchain — UNIVERSALIS
 
-**Owner:** The UNIVERSALIS Intelligence Powers repository  
-**Boundary:** Public, open, inspectable, independently operated  
-**Status:** Portable contract foundation; external runtime integrations remain candidates  
+**Owner:** The UNIVERSALIS Intelligence Powers repository
+**Boundary:** Public, open, inspectable, independently operated
+**Status:** Portable contract foundation; external runtime integrations remain candidates
 **Taxonomy:** Existing `Intelligence_Powers.md` I-P-01–I-P-12 remains canonical and unchanged
 
 ## Architectural position

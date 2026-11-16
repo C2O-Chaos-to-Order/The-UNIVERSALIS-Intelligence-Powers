@@ -1,9 +1,9 @@
 # Powers Energy Contract Validation Record
 
-**Date:** 2026-11-12  
-**Profile:** UNIVERSALIS  
-**Branch:** implementation/repository-foundation-2026-11-12  
-**Pull request:** #6  
+**Date:** 2026-11-12
+**Profile:** UNIVERSALIS
+**Branch:** implementation/repository-foundation-2026-11-12
+**Pull request:** #6
 **Validated contract/validator commit:** 8b3602627a59741fed34393d85e8b8333c36af07
 
 ## Executed checks
