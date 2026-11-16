@@ -215,10 +215,11 @@ meanings. Deprecate superseded concepts with replacement links; retain
 provenance. Review duplication, culture-specific assumptions,
 evidentiary gaps, permissions, and accessibility before release.
 
-Optional GAIA facets: Divergence (explore alternatives), Insurgence
+Optional six-phase facets: Divergence (explore alternatives), Insurgence
 (propose challenges to assumptions, without implying unauthorized
 action), Allegiance (record commitments and authority), Convergence
-(integrate evidence), Ascendence (evaluate improvement). These are
+(integrate evidence), Ascendence (evaluate improvement), Transcendence
+(transformative stewardship through responsibility). These are
 project-authored analytical tags, not empirically validated stages or
 rankings.
 
